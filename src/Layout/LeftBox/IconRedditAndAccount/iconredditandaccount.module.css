@@ -1,0 +1,40 @@
+.blockLink {
+    height: 112px;
+}
+
+.iconBlock {
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.positionIcon {
+    margin-right: 10px;
+}
+
+.linkBlock {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--backgroundGrey);
+    width: 100%;
+}
+
+.img {
+    margin-right: 10px;
+    height: 40px;
+    width: 60px;
+    border-radius: 50px;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--black17);
+}
+
+.btn {
+    position: absolute;
+    right: 5px;
+}

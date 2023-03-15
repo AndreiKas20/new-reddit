@@ -1,0 +1,13 @@
+.navBlock {
+    padding: 15px 0;
+    background-color: var(--backgroundGrey);
+}
+
+.list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    padding: 5px 10px;
+}
