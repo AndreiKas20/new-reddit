@@ -1,3 +1,7 @@
 .list {
-    font-size: 30px;
+    padding: 110px 140px 0 ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
