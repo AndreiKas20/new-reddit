@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './buttonheader.module.css';
 
 interface IButtonHeader {
-  text: string
+  text: string,
+  onClick: () => void
 }
 
-export function ButtonHeader({text}: IButtonHeader) {
+export function ButtonHeader({text, onClick}: IButtonHeader) {
   return (
-          <button className={styles.btn}>{text}</button>
+          <button onClick={onClick} className={styles.btn}>{text}</button>
   );
 }

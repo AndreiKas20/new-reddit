@@ -7,6 +7,9 @@ import {IconRobot} from "../IconRobot";
 import {IconQuestion} from "../IconQuestion";
 import {IconHome} from "../IconHome";
 import {IconBlocks} from "../IconBlocks";
+import {IconComment} from "../IconComment";
+import {IconShare} from "../IconShare";
+import {IconArrow} from "../IconArrow";
 
 interface IIcon {
     nameIcon: iconNames,
@@ -52,7 +55,21 @@ export function Icon({nameIcon, width, height, isActive}: IIcon) {
             <IconBlocks isActive={isActive} width={width} height={height} />
         )
     }
-
+    if (nameIcon === 'Comment') {
+        return (
+            <IconComment isActive={isActive} width={width} height={height} />
+        )
+    }
+    if (nameIcon === 'Share') {
+        return (
+            <IconShare isActive={isActive} width={width} height={height} />
+        )
+    }
+    if (nameIcon === 'Arrow') {
+        return (
+            <IconArrow isActive={isActive} width={width} height={height} />
+        )
+    }
     return (
         <div></div>
     );

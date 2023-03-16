@@ -1,0 +1,23 @@
+.btnBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: 60px;
+    width: 100%;
+}
+
+.blockLikePosition {
+    position: relative;
+}
+
+.btnArrowUpPos {
+    position: absolute;
+    top: 5px;
+    transform: rotate(180deg);
+}
+
+.btnArrowDownPos {
+    position: relative;
+    bottom: 5px;
+}

@@ -1,23 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './card.module.css';
+import {postData} from "../../../../../types/postsType";
+import {useGetDateCreate} from "../../../../hooks/useGetDateCreate";
+import {CardBtnBlock} from "./CardBtnBlock";
 
-export function Card() {
+interface ICard {
+    dataPost: postData
+}
+
+export function Card({dataPost}: ICard) {
+    const [isImg, setIsImg] = useState(false)
+    console.log(dataPost)
+    useEffect(() => {
+        if (dataPost.thumbnail.length > 10) setIsImg(true)
+    },[dataPost])
+    const date = useGetDateCreate(dataPost.created_utc)
     return (
         <li className={styles.card}>
-            <div className={styles.imageBlock}>
-
-            </div>
+            {
+                isImg &&
+                <img className={styles.img} alt={'картинка карточки'} src={dataPost.thumbnail}/>
+            }
             <div className={styles.descrBlock}>
-                <div className={styles.text}>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad animi commodi cupiditate doloribus explicabo incidunt itaque minus natus odio quam qui quod sint suscipit, unde, voluptas voluptatum! Autem, corporis!
-                    </p>
-                </div>
+                <p className={styles.text}>
+                    {
+                        dataPost.title
+                    }
+                </p>
                 <div className={styles.informationBlock}>
-
+                    <span className={styles.datePublic}>{date} назад от</span>
+                    <span className={styles.authorName}>{dataPost.author}</span>
                 </div>
                 <div className={styles.btnBlock}>
-
+                    <CardBtnBlock countComments={dataPost.num_comments} countLike={dataPost.score}/>
                 </div>
             </div>
         </li>
