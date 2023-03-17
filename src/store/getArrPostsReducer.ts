@@ -20,6 +20,8 @@ export const getDataArr: Reducer = (state = arr, action) => {
 
 export const getArrAction = (payload: posts) => ({type: GET_ARR, payload})
 export const clearArrAction = (payload: boolean) => ({type: CLEAR_ARR, payload})
+
+
 export const getArrPosts = (token: string, link: string) => {
     return (dispatch: any) => {
         if (token === 'undefined' || token === '') return

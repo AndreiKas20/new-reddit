@@ -6,7 +6,7 @@ export const useGetDataUser = (token: string) => {
     const [dataUser, setDataUser] = useState<userDataType>()
     useEffect(() => {
         if (token === 'undefined' || token === '') return
-        axios.get('https://oauth.reddit.com/api/v1/me', {
+        axios.get('https://oauth.reddit.com/api/v1/me/prefs', {
             headers: {Authorization: `bearer ${token}`}
         })
             .then((resp) => {

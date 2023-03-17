@@ -4,18 +4,23 @@ import {Icon} from "../../../UI/Icon";
 import {userDataType} from "../../../../types/userDataType";
 import {useDispatch, useSelector} from "react-redux";
 import {clearUsersAction, defaultUser} from "../../../store/getDataUserReducer";
+import {clearArrAction} from "../../../store/getArrPostsReducer";
+import {useGetDataUser} from "../../../hooks/useGetDataUser";
 
 
 export function IconRedditAndAccount() {
     const dataUserReducer = useSelector<any, userDataType>(state => state.getDataUserReducer.user)
+    // const d = useGetDataUser(localStorage.token)
     const [data, setData] = useState<userDataType>()
     const dispatch: any = useDispatch()
     const quit = () => {
         localStorage.token = ''
         dispatch(clearUsersAction(defaultUser))
+        dispatch(clearArrAction(false))
     }
     useEffect(() => {
         setData(dataUserReducer)
+        console.log('user data',dataUserReducer)
     }, [dataUserReducer])
     return (
         <div className={styles.blockLink}>

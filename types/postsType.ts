@@ -70,7 +70,7 @@ export type postData = {
     permalink: string
     pinned: boolean
     post_hint: string
-    preview: object,
+    preview: {enabled: boolean},
     pwls: number
     quarantine: boolean
     removal_reason: any
@@ -80,7 +80,7 @@ export type postData = {
     saved: boolean
     score: number
     secure_media: any
-    secure_media_embed: object
+    secure_media_embed: {media_domain_url:string,content:string,height: number, width: number}
     selftext: string
     selftext_html: any
     send_replies: boolean

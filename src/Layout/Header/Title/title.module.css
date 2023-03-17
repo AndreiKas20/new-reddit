@@ -5,3 +5,44 @@
     line-height: 23px;
     color: var(--black17);
 }
+
+.arrow {
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background-color: var(--black17);
+}
+
+.arrow:after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: var(--black17);
+    left: 0;
+    top: 3px;
+    transform: rotate(45deg);
+}
+
+.arrow:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: var(--black17);
+    left: 0;
+    top: -3px;
+    transform: rotate(-45deg);
+}
+
+.btn {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.btn:hover {
+    transform: none;
+}
