@@ -116,8 +116,8 @@ export type arrPosts = Array<{
 }>
 
 export type postsData = {
-    after: string | null,
-    before: string | null,
+    after: string,
+    before: string,
     children: arrPosts,
     dist: number,
     geo_filter: string | null,

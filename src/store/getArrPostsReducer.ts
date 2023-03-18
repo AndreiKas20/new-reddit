@@ -22,11 +22,14 @@ export const getArrAction = (payload: posts) => ({type: GET_ARR, payload})
 export const clearArrAction = (payload: boolean) => ({type: CLEAR_ARR, payload})
 
 
-export const getArrPosts = (token: string, link: string) => {
+export const getArrPosts = (token: string, link: string, nextAfter?: string) => {
     return (dispatch: any) => {
         if (token === 'undefined' || token === '') return
         axios.get(`https://oauth.reddit.com/r/popular/${link}`, {
-            headers: {Authorization: `bearer ${token}`}
+            headers: {Authorization: `bearer ${token}`},
+            params: {
+                after: nextAfter,
+            }
         })
             .then((resp) => {
                 const data: posts = resp.data;

@@ -1,5 +1,7 @@
 .title {
+    display: inline-block;
     padding: 16px 17px 24px;
+    margin-right: 40px;
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
@@ -45,4 +47,15 @@
 
 .btn:hover {
     transform: none;
+}
+
+.subredditName {
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    border-radius: 30px;
 }

@@ -4,22 +4,25 @@ import {DateAndAuthor} from "../ListCard/Card/DateAndAuthor";
 import {ButtonCard} from "../../../UI/ButtonCard";
 import {postData} from "../../../../types/postsType";
 import ReactPlayer from "react-player";
+import {useGetDateCreate} from "../../../hooks/useGetDateCreate";
 
 interface IEntry {
     cardData: postData
 }
 
 export function EntryCard({cardData}:IEntry) {
-    console.log({cardData})
     const linkToVideo = cardData.secure_media?.reddit_video ? cardData.secure_media?.reddit_video.dash_url : '';
+    const dateCreate= useGetDateCreate(cardData.created)
     return (
         <div className={styles.card}>
-            <h2 className={styles.title}>{cardData.title}</h2>
-            <DateAndAuthor author={''} date={''}/>
-            <ButtonCard typeIcon={'Share'} isActiveIcon={false} widthIcon={'24px'} heightIcon={'24px'}/>
+           <div className={styles.headBlock}>
+               <h2 className={styles.title}>{cardData.title}</h2>
+               <DateAndAuthor author={cardData.author} date={dateCreate}/>
+           </div>
+           <div className={styles.btnSharePos}><ButtonCard typeIcon={'Share'} isActiveIcon={false} widthIcon={'24px'} heightIcon={'24px'}/></div>
             {
                 cardData.preview?.enabled &&
-                <img alt={'Фото'} src={cardData.url}/>
+                <img className={styles.img} alt={'Фото'} src={cardData.url}/>
             }
             {
                 cardData.secure_media?.reddit_video &&
