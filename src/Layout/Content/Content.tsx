@@ -17,10 +17,6 @@ export const Content = observer(({subtitle}: IContent) => {
     const dataCard = dataTargetCardStore.cardData
     const isCard = changeTargetCardStore.target
     const categoriesLoad = targetCategoriesStore.targetCategories
-    const getArr = useCallback((token: string, link: string) => {
-        dispatch(getArrPosts(token, link))
-    },[dispatch, localStorage.token])
-    getArr(localStorage.token, categoriesLoad)
     return (
         <div className={styles.contentBlock}>
             {

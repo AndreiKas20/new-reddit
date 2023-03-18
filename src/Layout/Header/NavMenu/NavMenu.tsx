@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import styles from './navmenu.module.css';
 import {ButtonHeader} from "../../../UI/ButtonHeader";
 import {useDispatch} from "react-redux";
-import {clearArrAction, getArrPosts} from "../../../store/getArrPostsReducer";
+import {clearArrAction, clearKeyAction, getArrPosts} from "../../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 
@@ -10,28 +10,33 @@ export const NavMenu = observer(() => {
         const dispatch: any = useDispatch()
         const categoriesLoad = targetCategoriesStore.targetCategories
         const hotPostsClick = useCallback(() => {
-            dispatch(clearArrAction(false))
-            dispatch(getArrPosts(localStorage.token, 'hot'))
+            dispatch(clearArrAction([]))
+            // dispatch(getArrPosts(localStorage.token, 'hot', ''))
+            dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('hot')
         }, [dispatch])
         const newPostsClick = useCallback(() => {
-            dispatch(clearArrAction(false))
-            dispatch(getArrPosts(localStorage.token, 'new'))
+            dispatch(clearArrAction([]))
+            // dispatch(getArrPosts(localStorage.token, 'new', ''))
+            dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('new')
         }, [dispatch])
         const risingPostsClick = useCallback(() => {
-            dispatch(clearArrAction(false))
-            dispatch(getArrPosts(localStorage.token, 'rising'))
+            dispatch(clearArrAction([]))
+            // dispatch(getArrPosts(localStorage.token, 'rising', ''))
+            dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('rising')
         }, [dispatch])
         const contrPostsClick = useCallback(() => {
-            dispatch(clearArrAction(false))
-            dispatch(getArrPosts(localStorage.token, 'controversial'))
+            dispatch(clearArrAction([]))
+            // dispatch(getArrPosts(localStorage.token, 'controversial', ''))
+            dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('controversial')
         }, [dispatch])
         const topPostsClick = useCallback(() => {
-            dispatch(clearArrAction(false))
-            dispatch(getArrPosts(localStorage.token, 'top'))
+            dispatch(clearArrAction([]))
+            // dispatch(getArrPosts(localStorage.token, 'top', ''))
+            dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('top')
         }, [dispatch])
         return (

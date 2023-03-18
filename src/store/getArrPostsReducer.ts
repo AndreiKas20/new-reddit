@@ -3,24 +3,27 @@ import axios from "axios";
 import {posts} from "../../types/postsType";
 
 export const arrCard = false
-const arr = {arr: arrCard}
+const arr = {arr: []}
 
 export const GET_ARR = 'GET_ARR'
 export const CLEAR_ARR = 'CLEAR_ARR'
+export const CLEAR_KEY = 'CLEAR_KEY'
 export const getDataArr: Reducer = (state = arr, action) => {
     switch (action.type) {
         case GET_ARR:
-            return {...state, arr: action.payload}
+            return {...state, arr: [...state.arr,...action.payload.data.children], after: action.payload.data.after}
         case CLEAR_ARR:
             return {...state, arr: action.payload}
+        case CLEAR_KEY:
+            return {...state, after: action.payload}
         default:
             return state
     }
 }
 
 export const getArrAction = (payload: posts) => ({type: GET_ARR, payload})
-export const clearArrAction = (payload: boolean) => ({type: CLEAR_ARR, payload})
-
+export const clearArrAction = (payload: []) => ({type: CLEAR_ARR, payload})
+export const clearKeyAction = (payload:string) => ({type: CLEAR_KEY, payload})
 
 export const getArrPosts = (token: string, link: string, nextAfter?: string) => {
     return (dispatch: any) => {

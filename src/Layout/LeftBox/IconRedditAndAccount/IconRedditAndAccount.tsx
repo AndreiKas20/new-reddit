@@ -16,7 +16,7 @@ export function IconRedditAndAccount() {
     const quit = () => {
         localStorage.token = ''
         dispatch(clearUsersAction(defaultUser))
-        dispatch(clearArrAction(false))
+        dispatch(clearArrAction([]))
     }
     useEffect(() => {
         setData(dataUserReducer)

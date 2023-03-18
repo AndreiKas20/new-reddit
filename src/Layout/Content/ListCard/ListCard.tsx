@@ -1,50 +1,46 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import styles from './listcard.module.css';
 import {Card} from "./Card";
 import {arrPosts, posts} from "../../../../types/postsType";
 import {useDispatch, useSelector} from "react-redux";
 import {getArrPosts} from "../../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
+import {observer} from "mobx-react-lite";
 
-export function ListCard() {
+export const ListCard = observer(() => {
     const [posts, setPosts] = useState<arrPosts | false>()
-
-    const arrPosts = useSelector<any, posts>(state => state.getDataArr.arr)
-    console.log(arrPosts)
+    const [isLoader, setIsLoader] = useState(false)
+    const arrPosts = useSelector<any, arrPosts>(state => state.getDataArr.arr)
+    const afterKey = useSelector<any, string>(state => state.getDataArr.after)
+    console.log('after key',afterKey)
     const bottomOfList = useRef<HTMLDivElement>(null)
     const dispatch: any = useDispatch()
     const categoriesLoad = targetCategoriesStore.targetCategories
-    const token = localStorage.token
-    const afterKey = arrPosts ? arrPosts.data.after : ''
-    useEffect(() => {
-        if (arrPosts) {
-            setPosts(arrPosts.data.children)
-        } else {
-            setPosts(false)
-        }
-    }, [arrPosts])
-    useEffect(() => {
+    // const afterKey = arrPosts ? arrPosts.data.after : ''
+    useLayoutEffect(() => {
+        const current = bottomOfList.current
         const observer = new IntersectionObserver((entries) => {
-                if (!arrPosts) return;
-                if (token === '' || token === 'undefined') return
+                if (!arrPosts) return
+                if (localStorage.token === '' || localStorage.token === 'undefined') return
                 if (entries[0].isIntersecting) {
-                    dispatch(getArrPosts(token, categoriesLoad, afterKey))
+                    setIsLoader(true)
+                    dispatch(getArrPosts(localStorage.token, categoriesLoad,afterKey))
                 }
             },
             {
-                rootMargin: '10px'
+                rootMargin: '60px'
             },
         );
-        if (bottomOfList.current) {
-            observer.observe(bottomOfList.current)
+        setPosts(arrPosts)
+        if (current) {
+            observer.observe(current)
         }
         return () => {
-            if (bottomOfList.current) {
-                observer.unobserve(bottomOfList.current)
+            if (current) {
+                observer.unobserve(current)
             }
         }
-
-    }, [bottomOfList.current, categoriesLoad, dispatch, token, arrPosts, afterKey])
+    }, [afterKey, categoriesLoad])
 
     return (
         <>
@@ -58,11 +54,15 @@ export function ListCard() {
                     <span className={styles.messageEnter}>Для просмотра списка постов войдите в учетную запись</span>
                 }
                 {
-                    !posts && localStorage.token !== '' &&
-                    <div className={styles.loader}/>
+                   isLoader && <div style={{height: '70px', width: '70px'}}><div className={styles.loader}/></div>
                 }
+
             </ul>
             <div ref={bottomOfList}/>
+            {
+                !posts && localStorage.token !== '' &&
+                <div className={styles.loader}/>
+            }
         </>
     );
-}
+})
