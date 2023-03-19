@@ -13,7 +13,6 @@ interface IContent {
 }
 
 export const Content = observer(({subtitle}: IContent) => {
-    const dispatch: any = useDispatch()
     const dataCard = dataTargetCardStore.cardData
     const isCard = changeTargetCardStore.target
     const categoriesLoad = targetCategoriesStore.targetCategories

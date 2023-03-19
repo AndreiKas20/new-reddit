@@ -6,6 +6,7 @@ import {CardBtnBlock} from "./CardBtnBlock";
 import dataTargetCardStore from "../../../../storeMobx/dataTargetCardStore";
 import changeTargetCardStore from "../../../../storeMobx/changeTargetCardStore";
 import {DateAndAuthor} from "./DateAndAuthor";
+import windowYPositionStore from "../../../../storeMobx/windowYPositionStore";
 
 interface ICard {
     dataPost: postData
@@ -16,6 +17,7 @@ export function Card({dataPost}: ICard) {
     const [isBigText, setIsBigText] = useState(false)
     const date = useGetDateCreate(dataPost.created_utc)
     const changeData = useCallback(() => {
+        windowYPositionStore.savePosition(window.scrollY)
         dataTargetCardStore.changePostData(dataPost)
         changeTargetCardStore.changeTarget(true)
     }, [dataPost])
