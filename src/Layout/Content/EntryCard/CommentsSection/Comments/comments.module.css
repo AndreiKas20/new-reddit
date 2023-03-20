@@ -1,0 +1,97 @@
+.comments {
+    position: relative;
+    padding: 16px 0 0 25px;
+    min-height: 40px;
+    background-color: var(--fullWhite);
+    border-top: 2px solid var(--greyLightF8);
+    border-radius: 10px;
+}
+
+.comments:before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 63px;
+    width: 2px;
+    height: calc(100% - 63px);
+    background-color: #E0E0E0;
+}
+
+.comments:not(:first-child):after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 31px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+}
+
+
+
+.topBlock {
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.bottomBlock {
+    padding-left: 20px;
+}
+
+.positionBtnVote {
+    position: absolute;
+    top: 25px;
+    left: 0;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--black17);
+    max-width: 85%;
+}
+
+.nameAuthor {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--grayText);
+}
+
+.dateCreate {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--grayText);
+}
+
+.positionBtnComment {
+    position: absolute;
+    right: 0;
+    top: calc(50% - 12px);
+}
+
+.positionBtnComment:after {
+    content: 'Ответить';
+    padding: 3px;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: -25px;
+    left: -8px;
+    font-size: 12px;
+    border-radius: 5px;
+    color: var(--greyLightF8);
+    background-color: var(--grey85);
+    transition: all .3s ease-in-out;
+}
+
+.positionBtnComment:hover.positionBtnComment:after{
+    visibility: inherit;
+    opacity: 1;
+}

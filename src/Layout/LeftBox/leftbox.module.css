@@ -3,6 +3,6 @@
     width: 256px;
     height: 100%;
     background-color: var(--fullWhite);
-    z-index: 2;
+    z-index: 9;
     border-right: solid 2px var(--greyD9);
 }

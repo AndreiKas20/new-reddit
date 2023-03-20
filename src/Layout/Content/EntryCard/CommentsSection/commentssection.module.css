@@ -1,0 +1,24 @@
+.commentsBlock {
+    padding: 25px 140px 100px;
+    box-shadow: 0 10px 63px rgba(0, 0, 0, 0.07);
+    background: linear-gradient(0deg, #E0E0E0 70%, var(--greyLightF8));
+
+
+}
+
+.countComments {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--black17);
+}
+
+.listComments {
+    padding: 0 40px 0 0;
+    background-color: var(--fullWhite);
+    border-radius: 10px;
+}
+
+.settingBlock {
+    margin-bottom: 30px;
+}

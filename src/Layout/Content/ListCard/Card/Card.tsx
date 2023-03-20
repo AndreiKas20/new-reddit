@@ -7,6 +7,7 @@ import dataTargetCardStore from "../../../../storeMobx/dataTargetCardStore";
 import changeTargetCardStore from "../../../../storeMobx/changeTargetCardStore";
 import {DateAndAuthor} from "./DateAndAuthor";
 import windowYPositionStore from "../../../../storeMobx/windowYPositionStore";
+import targetLoaderComments from "../../../../storeMobx/targetLoaderComments";
 
 interface ICard {
     dataPost: postData
@@ -20,6 +21,7 @@ export function Card({dataPost}: ICard) {
         windowYPositionStore.savePosition(window.scrollY)
         dataTargetCardStore.changePostData(dataPost)
         changeTargetCardStore.changeTarget(true)
+        targetLoaderComments.change(true)
     }, [dataPost])
     useEffect(() => {
         if (dataPost.thumbnail.length > 10) setIsImg(true)

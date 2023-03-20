@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {clearArrAction, clearKeyAction, getArrPosts} from "../../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
+import windowYPositionStore from "../../../storeMobx/windowYPositionStore";
 
 export const NavMenu = observer(() => {
         const dispatch: any = useDispatch()
@@ -14,30 +15,35 @@ export const NavMenu = observer(() => {
             // dispatch(getArrPosts(localStorage.token, 'hot', ''))
             dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('hot')
+            windowYPositionStore.savePosition(0)
         }, [dispatch])
         const newPostsClick = useCallback(() => {
             dispatch(clearArrAction([]))
             // dispatch(getArrPosts(localStorage.token, 'new', ''))
             dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('new')
+            windowYPositionStore.savePosition(0)
         }, [dispatch])
         const risingPostsClick = useCallback(() => {
             dispatch(clearArrAction([]))
             // dispatch(getArrPosts(localStorage.token, 'rising', ''))
             dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('rising')
+            windowYPositionStore.savePosition(0)
         }, [dispatch])
         const contrPostsClick = useCallback(() => {
             dispatch(clearArrAction([]))
             // dispatch(getArrPosts(localStorage.token, 'controversial', ''))
             dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('controversial')
+            windowYPositionStore.savePosition(0)
         }, [dispatch])
         const topPostsClick = useCallback(() => {
             dispatch(clearArrAction([]))
             // dispatch(getArrPosts(localStorage.token, 'top', ''))
             dispatch(clearKeyAction(''))
             targetCategoriesStore.changeTarget('top')
+            windowYPositionStore.savePosition(0)
         }, [dispatch])
         return (
             <nav className={styles.navBlock}>

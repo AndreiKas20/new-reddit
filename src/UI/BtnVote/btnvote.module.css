@@ -1,5 +1,6 @@
 .blockLikePosition {
     position: relative;
+    min-height: 30px;
 }
 
 .btnArrowUpPos {

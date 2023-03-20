@@ -1,0 +1,1 @@
+export type sortCommentsType = 'top' | 'new' | 'controversial' | 'old' | 'random'

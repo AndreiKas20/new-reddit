@@ -7,8 +7,13 @@ import {getArrPosts} from "../../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 import windowYPositionStore from "../../../storeMobx/windowYPositionStore";
+import {Preloader} from "../../../UI/Preloader";
 
-export const ListCard = observer(() => {
+interface IListCard {
+    startArrPosts: arrPosts
+}
+
+export const ListCard = observer(({startArrPosts} :IListCard) => {
     const yPosition = windowYPositionStore.yPosition
     const scroll = (yPos: number) => {
         if (yPos === 0) return
@@ -17,6 +22,8 @@ export const ListCard = observer(() => {
     useEffect(() => {
         scroll(yPosition)
     },[yPosition, scroll])
+
+    const [countLoad, setCountLoad] = useState(0)
     const [posts, setPosts] = useState<arrPosts | false>()
     const [isLoader, setIsLoader] = useState(false)
     const [isLoadData, setIsLoadData] = useState(false)
@@ -25,47 +32,55 @@ export const ListCard = observer(() => {
     const bottomOfList = useRef<HTMLDivElement>(null)
     const dispatch: any = useDispatch()
     const categoriesLoad = targetCategoriesStore.targetCategories
-    // const afterKey = arrPosts ? arrPosts.data.after : ''
+    const morePosts = () => {
+        dispatch(getArrPosts(localStorage.token, categoriesLoad,afterKey))
+        setIsLoader(true)
+        windowYPositionStore.savePosition(0)
+    }
     useEffect(() => {
         setPosts(arrPosts)
-        setIsLoadData(false)
+        // setIsLoadData(false)
+        setIsLoader(false)
     },[arrPosts])
     useEffect(() => {
-        setIsLoadData(false)
-    },[categoriesLoad])
-    useEffect(() => {
-        const current = bottomOfList.current
-        const observer = new IntersectionObserver((entries) => {
-            console.log('load data',isLoadData)
-                if (isLoadData) return
-            console.log('enter load')
-                if (localStorage.token === '' || localStorage.token === 'undefined') return
-            console.log('enter token')
-                if (entries[0].isIntersecting) {
-                    console.log('in to dispatch')
-                    setIsLoadData(true)
-                    setIsLoader(true)
-                    windowYPositionStore.savePosition(0)
-                    dispatch(getArrPosts(localStorage.token, categoriesLoad,afterKey))
-                }
-            },
-            {
-                rootMargin: '20px'
-            },
-        );
-        if (current) {
-            observer.observe(current)
-        }
-        return () => {
-            if (current) {
-                observer.unobserve(current)
-            }
-        }
-    }, [afterKey, categoriesLoad,dispatch,isLoadData])
+        setPosts(startArrPosts)
+        // setIsLoader(false)
+        // setIsLoadData(false)
+    },[startArrPosts])
+    // useEffect(() => {
+    //     const current = bottomOfList.current
+    //     const observer = new IntersectionObserver((entries) => {
+    //         console.log('enter load')
+    //             if (localStorage.token === '' || localStorage.token === 'undefined') return
+    //         console.log('enter token', startArrPosts.length, countLoad)
+    //             if (entries[0].isIntersecting && !isLoadData) {
+    //                 console.log('in to dispatch')
+    //                 setIsLoader(true)
+    //                 setCountLoad(prevState => prevState + 1)
+    //                 windowYPositionStore.savePosition(0)
+    //                 setIsLoadData(true)
+    //                 if (countLoad > 1) {
+    //                     // dispatch(getArrPosts(localStorage.token, categoriesLoad,afterKey))
+    //
+    //                 }
+    //             }
+    //         },
+    //         {
+    //             rootMargin: '20px'
+    //         },
+    //     );
+    //     if (current) {
+    //         observer.observe(current)
+    //     }
+    //     return () => {
+    //         if (current) {
+    //             observer.unobserve(current)
+    //         }
+    //     }
+    // }, [afterKey, categoriesLoad,dispatch,isLoadData,startArrPosts, countLoad])
 
     return (
         <>
-            <button>SCROLL</button>
             <ul className={styles.list}>
                 {
                     posts &&
@@ -75,11 +90,13 @@ export const ListCard = observer(() => {
                     !posts && localStorage.token === '' &&
                     <span className={styles.messageEnter}>Для просмотра списка постов войдите в учетную запись</span>
                 }
-                {
-                   isLoader && <div style={{height: '70px', width: '70px'}}><div className={styles.loader}/></div>
-                }
-
             </ul>
+            {
+                !isLoader && <button onClick={morePosts}>More posts</button>
+            }
+            {
+                isLoader && <Preloader width={'70px'} height={'70px'}/>
+            }
             <div ref={bottomOfList}/>
             {
                 !posts && localStorage.token !== '' &&
