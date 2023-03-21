@@ -13,6 +13,7 @@ export function IconRedditAndAccount() {
     // const d = useGetDataUser(localStorage.token)
     const [data, setData] = useState<userDataType>()
     const dispatch: any = useDispatch()
+    const location = window.location.href.split('?')[0]
     const quit = () => {
         localStorage.token = ''
         dispatch(clearUsersAction(defaultUser))
