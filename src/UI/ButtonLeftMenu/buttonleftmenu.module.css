@@ -4,3 +4,7 @@
     line-height: 24px;
     color: var(--black17);
 }
+
+.btn:disabled {
+    opacity: 1;
+}

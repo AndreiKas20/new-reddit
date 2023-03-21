@@ -6,6 +6,10 @@
     color: var(--grayText);
 }
 
+.btn:disabled {
+    opacity: 1;
+}
+
 .btnActive {
     color: var(--orange);
 }

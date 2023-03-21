@@ -3,10 +3,12 @@ import styles from './buttonleftmenu.module.css';
 
 interface IButton {
   text: string
+  onClick?: () => void
+  isActive?: boolean
 }
 
-export function ButtonLeftMenu({text}:IButton) {
+export function ButtonLeftMenu({text, onClick, isActive}:IButton) {
   return (
-        <button className={styles.btn}>{text}</button>
+        <button disabled={isActive} style={{color: isActive? 'var(--orange)': 'var(--black17)'}} onClick={onClick} className={styles.btn}>{text}</button>
   );
 }

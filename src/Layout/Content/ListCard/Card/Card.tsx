@@ -7,7 +7,7 @@ import dataTargetCardStore from "../../../../storeMobx/dataTargetCardStore";
 import changeTargetCardStore from "../../../../storeMobx/changeTargetCardStore";
 import {DateAndAuthor} from "./DateAndAuthor";
 import windowYPositionStore from "../../../../storeMobx/windowYPositionStore";
-import targetLoaderComments from "../../../../storeMobx/targetLoaderComments";
+import targetLoaderComments from "../../../../storeMobx/targetLoaderCommentsStore";
 
 interface ICard {
     dataPost: postData

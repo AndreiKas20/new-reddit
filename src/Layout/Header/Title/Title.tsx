@@ -1,29 +1,63 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './title.module.css';
 import changeTargetCardStore from "../../../storeMobx/changeTargetCardStore";
+import listRedditStore from "../../../storeMobx/listRedditStore";
+import {observer} from "mobx-react-lite";
+import {useDispatch} from "react-redux";
+import {clearArrAction} from "../../../store/getArrPostsReducer";
 
 interface ITitle {
     title: string,
     isCard: boolean,
-    subredditName:string
+    subredditName: string,
+    valueSearch: string,
+    isSearch: boolean,
 }
 
-export function Title({title, isCard, subredditName} :ITitle) {
-    const backCards = () => {
-        changeTargetCardStore.changeTarget(false)
+export const Title = observer(({title, isCard, subredditName, isSearch, valueSearch}: ITitle) => {
+        const [isEnterSubreddit, setIsEnterSubreddit] = useState(false)
+        const typeListReddit = listRedditStore.typeList
+        const dispatch: any = useDispatch()
+        const backCards = () => {
+            changeTargetCardStore.changeTarget(false)
+        }
+        const clickSubreddit = () => {
+            dispatch(clearArrAction([]))
+            changeTargetCardStore.changeTarget(false)
+            listRedditStore.changeType(`r/${subredditName}/`)
+        }
+
+        useEffect(() => {
+            if (typeListReddit === '' || typeListReddit === 'r/all/') {
+                setIsEnterSubreddit(false)
+            } else {
+                setIsEnterSubreddit(true)
+            }
+        }, [typeListReddit])
+        return (
+            <div style={{position: 'relative'}}>
+                {
+                    isCard && <button onClick={backCards} className={styles.btn}><span className={styles.arrow}/></button>
+                }
+                {
+                    !isSearch &&
+                    <h1 style={{paddingLeft: isCard ? '60px' : '17px'}} className={styles.title}>
+                        {title}
+                    </h1>
+                }
+                {
+                   isSearch && <span className={styles.title}>Поиск: {valueSearch}</span>
+                }
+
+                {
+                    !isEnterSubreddit && isCard &&
+                    <button onClick={clickSubreddit} className={styles.subredditName}>{subredditName}</button>
+                }
+
+                {
+                   !isSearch && isEnterSubreddit && <span className={styles.subredditName}>{typeListReddit}</span>
+                }
+            </div>
+        );
     }
-    return (
-        <div style={{position:'relative'}}>
-            {
-                isCard && <button onClick={backCards} className={styles.btn}><span className={styles.arrow}/></button>
-            }
-            <h1 style={{paddingLeft: isCard? '60px': '17px'}} className={styles.title}>
-                {title}
-            </h1>
-
-            {
-                isCard && <h3 className={styles.subredditName}>{subredditName}</h3>
-            }
-        </div>
-    );
-}
+)

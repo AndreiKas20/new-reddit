@@ -8,9 +8,10 @@ interface IPreloader {
     top?: string,
     right?: string,
     bottom?: string,
+    position: 'absolute' | 'relative' | 'sticky'
 }
 
-export function Preloader({width, height, bottom, top, right, left}: IPreloader) {
+export function Preloader({width, height, bottom, top, right, left, position}: IPreloader) {
     return (
         <div style={{
             height: height,
@@ -19,7 +20,7 @@ export function Preloader({width, height, bottom, top, right, left}: IPreloader)
             right: right,
             top: top,
             bottom: bottom,
-            position: "absolute"
+            position: position,
         }}>
             <div className={styles.loader}/>
         </div>

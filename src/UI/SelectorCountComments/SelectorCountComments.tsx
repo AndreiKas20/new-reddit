@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import targetLoaderComments from "../../storeMobx/targetLoaderComments";
+import targetLoaderComments from "../../storeMobx/targetLoaderCommentsStore";
 import countCommentsStore from "../../storeMobx/countCommentsStore";
 import {SelectorLayout} from "../SelectorLayout";
 import {observer} from "mobx-react-lite";

@@ -8,6 +8,8 @@ import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 import windowYPositionStore from "../../../storeMobx/windowYPositionStore";
 import {Preloader} from "../../../UI/Preloader";
+import listRedditStore from "../../../storeMobx/listRedditStore";
+import {BtnLoader} from "../../../UI/BtnLoader";
 
 interface IListCard {
     startArrPosts: arrPosts
@@ -32,8 +34,9 @@ export const ListCard = observer(({startArrPosts} :IListCard) => {
     const bottomOfList = useRef<HTMLDivElement>(null)
     const dispatch: any = useDispatch()
     const categoriesLoad = targetCategoriesStore.targetCategories
+    const typeReddit = listRedditStore.typeList
     const morePosts = () => {
-        dispatch(getArrPosts(localStorage.token, categoriesLoad,afterKey))
+        dispatch(getArrPosts(localStorage.token, categoriesLoad,typeReddit,afterKey))
         setIsLoader(true)
         windowYPositionStore.savePosition(0)
     }
@@ -92,16 +95,12 @@ export const ListCard = observer(({startArrPosts} :IListCard) => {
                 }
             </ul>
             {
-                !isLoader && <button onClick={morePosts}>More posts</button>
+                 <BtnLoader isLoader={isLoader} onClick={morePosts}/>
             }
             {
-                isLoader && <Preloader width={'70px'} height={'70px'}/>
+
             }
             <div ref={bottomOfList}/>
-            {
-                !posts && localStorage.token !== '' &&
-                <div className={styles.loader}/>
-            }
         </>
     );
 })

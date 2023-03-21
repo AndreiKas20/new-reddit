@@ -10,6 +10,7 @@ import {IconBlocks} from "../IconBlocks";
 import {IconComment} from "../IconComment";
 import {IconShare} from "../IconShare";
 import {IconArrow} from "../IconArrow";
+import {IconSearch} from "../IconSearch";
 
 interface IIcon {
     nameIcon: iconNames,
@@ -68,6 +69,11 @@ export function Icon({nameIcon, width, height, isActive}: IIcon) {
     if (nameIcon === 'Arrow') {
         return (
             <IconArrow isActive={isActive} width={width} height={height} />
+        )
+    }
+    if (nameIcon === 'Search') {
+        return (
+            <IconSearch isActive={isActive} width={width} height={height} />
         )
     }
     return (

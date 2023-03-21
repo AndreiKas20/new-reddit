@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
 
-class TargetLoaderComments {
+class TargetLoaderCommentsStore {
     commentsLoader = false
     constructor() {
         makeAutoObservable(this)
@@ -10,4 +10,4 @@ class TargetLoaderComments {
     }
 }
 
-export default new TargetLoaderComments()
+export default new TargetLoaderCommentsStore()

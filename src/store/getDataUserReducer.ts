@@ -69,8 +69,8 @@ export const defaultUser : userDataType = {
 }
 const user = {user: defaultUser}
 
-export const GET_DATA = 'GET_DATA'
-export const CLEAR_DATA = 'CLEAR_DATA'
+const GET_DATA = 'GET_DATA'
+const CLEAR_DATA = 'CLEAR_DATA'
 export const getDataUserReducer: Reducer = (state = user, action) => {
     switch (action.type) {
         case GET_DATA:
@@ -83,7 +83,7 @@ export const getDataUserReducer: Reducer = (state = user, action) => {
 }
 
 export const clearUsersAction = (payload: userDataType) => ({type: CLEAR_DATA, payload})
-export const getDataAction = (payload: userDataType) => ({type: GET_DATA, payload})
+const getDataAction = (payload: userDataType) => ({type: GET_DATA, payload})
 
 export const getDataUser = (token: string) => {
     return (dispatch: any) => {

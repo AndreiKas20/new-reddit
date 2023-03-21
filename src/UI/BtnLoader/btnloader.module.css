@@ -1,0 +1,30 @@
+
+.btnOpenPosts {
+    padding: 7px 15px;
+    position: relative;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--orange);
+    left: calc(50% - 45px);
+    border: 1px solid var(--orange);
+    border-radius: 20px;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out, transform .3s ease-in-out;
+}
+
+.btnOpenPosts:hover {
+    background-color: var(--orange);
+    color: var(--greyLightF8);
+    transform: none;
+}
+
+.btnOpenPosts:active {
+    color: var(--black17);
+    background: none;
+}
+
+.btnOpenPosts:disabled {
+    opacity: 1;
+    background: none;
+    border: none;
+}

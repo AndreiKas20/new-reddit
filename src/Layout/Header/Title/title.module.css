@@ -13,6 +13,7 @@
     width: 18px;
     height: 2px;
     background-color: var(--black17);
+    transition: background-color .3s ease-in-out;
 }
 
 .arrow:after {
@@ -24,6 +25,7 @@
     left: 0;
     top: 3px;
     transform: rotate(45deg);
+    transition: background-color .3s ease-in-out;
 }
 
 .arrow:before {
@@ -35,18 +37,34 @@
     left: 0;
     top: -3px;
     transform: rotate(-45deg);
+    transition: background-color .3s ease-in-out;
 }
+
+
 
 .btn {
     position: absolute;
     top: 13px;
     left: 10px;
-    width: 25px;
+    width: 35px;
     height: 25px;
 }
 
+
 .btn:hover {
     transform: none;
+}
+
+.btn:hover .arrow {
+    background-color: var(--orange);
+}
+
+.btn:hover .arrow:after {
+    background-color: var(--orange);
+}
+
+.btn:hover .arrow:before {
+    background-color: var(--orange);
 }
 
 .subredditName {

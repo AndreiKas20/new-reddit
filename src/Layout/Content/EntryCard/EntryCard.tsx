@@ -11,7 +11,7 @@ import {CommentsSection} from "./CommentsSection";
 import sortCommentsStore from "../../../storeMobx/sortCommentsStore";
 import countCommentsStore from "../../../storeMobx/countCommentsStore";
 import {observer} from "mobx-react-lite";
-import targetLoaderComments from "../../../storeMobx/targetLoaderComments";
+import targetLoaderComments from "../../../storeMobx/targetLoaderCommentsStore";
 
 
 interface IEntry {

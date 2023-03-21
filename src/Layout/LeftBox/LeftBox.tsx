@@ -6,7 +6,7 @@ import {Setting} from "./Setting";
 import {useDispatch} from "react-redux";
 import {getDataUser} from "../../store/getDataUserReducer";
 
-export function LeftBox() {
+export function  LeftBox() {
     const token = localStorage.token
     const dispatch: any = useDispatch()
     const getData = useCallback((token: string) => {

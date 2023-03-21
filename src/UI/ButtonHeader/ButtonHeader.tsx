@@ -9,7 +9,7 @@ interface IButtonHeader {
 
 export function ButtonHeader({text, onClick, active}: IButtonHeader) {
     return (
-        <button onClick={onClick} className={active? `${styles.btn} ${styles.btnActive}`: styles.btn}>{text}
+        <button disabled={active} onClick={onClick} className={active? `${styles.btn} ${styles.btnActive}`: styles.btn}>{text}
             {
                 active &&
                 <span className={styles.border}/>

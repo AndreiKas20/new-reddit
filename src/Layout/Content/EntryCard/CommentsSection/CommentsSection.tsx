@@ -6,7 +6,7 @@ import {Selector} from "../../../../UI/Selector";
 import {observer} from "mobx-react-lite";
 import changeTargetCardStore from "../../../../storeMobx/changeTargetCardStore";
 import {Preloader} from "../../../../UI/Preloader";
-import targetLoaderComments from "../../../../storeMobx/targetLoaderComments";
+import targetLoaderComments from "../../../../storeMobx/targetLoaderCommentsStore";
 import {SelectorCountComments} from "../../../../UI/SelectorCountComments";
 
 interface ICommentsBlock {
@@ -28,7 +28,7 @@ export const CommentsSection = observer(({countComments, listComments}: IComment
             </div>
             <div className={styles.listComments}>
                 {
-                    isLoader && <Preloader height={'50px'} width={'50px'} left={'48%'} bottom={'50px'}/>
+                    isLoader && <Preloader height={'50px'} width={'50px'} left={'48%'} bottom={'50px'} position={"absolute"}/>
                 }
                 {
                    !isLoader && listComments.map(comment => <Comments key={comment.data.id} comment={comment.data}/>)

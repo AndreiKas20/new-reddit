@@ -11,7 +11,7 @@ export const CLEAR_KEY = 'CLEAR_KEY'
 export const getDataArr: Reducer = (state = arr, action) => {
     switch (action.type) {
         case GET_ARR:
-            return {...state, arr: [...state.arr,...action.payload.data.children], after: action.payload.data.after}
+            return {...state, arr: [...state.arr, ...action.payload.data.children], after: action.payload.data.after}
         case CLEAR_ARR:
             return {...state, arr: action.payload}
         case CLEAR_KEY:
@@ -21,14 +21,14 @@ export const getDataArr: Reducer = (state = arr, action) => {
     }
 }
 
-export const getArrAction = (payload: posts) => ({type: GET_ARR, payload})
+const getArrAction = (payload: posts) => ({type: GET_ARR, payload})
 export const clearArrAction = (payload: []) => ({type: CLEAR_ARR, payload})
-export const clearKeyAction = (payload:string) => ({type: CLEAR_KEY, payload})
+export const clearKeyAction = (payload: string) => ({type: CLEAR_KEY, payload})
 
-export const getArrPosts = (token: string, link: string, nextAfter?: string) => {
+export const getArrPosts = (token: string, link: string, typeReddit: string, nextAfter?: string) => {
     return (dispatch: any) => {
         if (token === 'undefined' || token === '') return
-        axios.get(`https://oauth.reddit.com/r/popular/${link}`, {
+        axios.get(`https://oauth.reddit.com/${typeReddit}${link}`, {
             headers: {Authorization: `bearer ${token}`},
             params: {
                 after: nextAfter,

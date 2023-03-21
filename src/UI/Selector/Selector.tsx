@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import sortCommentsStore from "../../storeMobx/sortCommentsStore";
-import targetLoaderComments from "../../storeMobx/targetLoaderComments";
+import targetLoaderComments from "../../storeMobx/targetLoaderCommentsStore";
 import {SelectorLayout} from "../SelectorLayout";
 
 export interface ISelector {
