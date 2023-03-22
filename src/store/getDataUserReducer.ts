@@ -87,7 +87,7 @@ const getDataAction = (payload: userDataType) => ({type: GET_DATA, payload})
 
 export const getDataUser = (token: string) => {
     return (dispatch: any) => {
-        if (token === 'undefined' || token === '') return
+        if (token === 'undefined' || token === '' || !token) return
         axios.get('https://oauth.reddit.com/api/v1/me', {
             headers: {Authorization: `bearer ${token}`}
         })

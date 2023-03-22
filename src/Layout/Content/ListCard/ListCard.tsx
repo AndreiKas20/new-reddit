@@ -1,13 +1,12 @@
-import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './listcard.module.css';
 import {Card} from "./Card";
-import {arrPosts, posts} from "../../../../types/postsType";
+import {arrPosts} from "../../../../types/postsType";
 import {useDispatch, useSelector} from "react-redux";
 import {getArrPosts} from "../../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 import windowYPositionStore from "../../../storeMobx/windowYPositionStore";
-import {Preloader} from "../../../UI/Preloader";
 import listRedditStore from "../../../storeMobx/listRedditStore";
 import {BtnLoader} from "../../../UI/BtnLoader";
 
@@ -15,41 +14,43 @@ interface IListCard {
     startArrPosts: arrPosts
 }
 
-export const ListCard = observer(({startArrPosts} :IListCard) => {
+export const ListCard = observer(({startArrPosts}: IListCard) => {
     const yPosition = windowYPositionStore.yPosition
-    const scroll = (yPos: number) => {
-        if (yPos === 0) return
-      return   window.scrollTo(0,yPos - 300)
-    }
-    useEffect(() => {
-        scroll(yPosition)
-    },[yPosition, scroll])
-
-    const [countLoad, setCountLoad] = useState(0)
     const [posts, setPosts] = useState<arrPosts | false>()
-    const [isLoader, setIsLoader] = useState(false)
-    const [isLoadData, setIsLoadData] = useState(false)
+    const [isLoader, setIsLoader] = useState(true)
     const arrPosts = useSelector<any, arrPosts>(state => state.getDataArr.arr)
     const afterKey = useSelector<any, string>(state => state.getDataArr.after)
     const bottomOfList = useRef<HTMLDivElement>(null)
     const dispatch: any = useDispatch()
     const categoriesLoad = targetCategoriesStore.targetCategories
     const typeReddit = listRedditStore.typeList
+
     const morePosts = () => {
-        dispatch(getArrPosts(localStorage.token, categoriesLoad,typeReddit,afterKey))
+        dispatch(getArrPosts(localStorage.token, categoriesLoad, typeReddit, afterKey))
         setIsLoader(true)
         windowYPositionStore.savePosition(0)
     }
+    const scroll = (yPos: number) => {
+        if (yPos === 0) return
+        return window.scrollTo(0, yPos - 300)
+    }
+    useEffect(() => {
+        setIsLoader(true)
+    },[categoriesLoad, typeReddit])
     useEffect(() => {
         setPosts(arrPosts)
-        // setIsLoadData(false)
-        setIsLoader(false)
-    },[arrPosts])
+    }, [arrPosts])
     useEffect(() => {
         setPosts(startArrPosts)
-        // setIsLoader(false)
-        // setIsLoadData(false)
-    },[startArrPosts])
+    }, [startArrPosts])
+    useEffect(() => {
+        scroll(yPosition)
+    }, [yPosition, scroll])
+    useEffect(() => {
+        if (posts && posts.length > 10) {
+            setIsLoader(false)
+        }
+    }, [posts])
     // useEffect(() => {
     //     const current = bottomOfList.current
     //     const observer = new IntersectionObserver((entries) => {
@@ -95,11 +96,9 @@ export const ListCard = observer(({startArrPosts} :IListCard) => {
                 }
             </ul>
             {
-                 <BtnLoader isLoader={isLoader} onClick={morePosts}/>
+              <BtnLoader isLoader={isLoader} onClick={morePosts}/>
             }
-            {
 
-            }
             <div ref={bottomOfList}/>
         </>
     );

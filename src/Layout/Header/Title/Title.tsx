@@ -5,6 +5,7 @@ import listRedditStore from "../../../storeMobx/listRedditStore";
 import {observer} from "mobx-react-lite";
 import {useDispatch} from "react-redux";
 import {clearArrAction} from "../../../store/getArrPostsReducer";
+import {Link} from "react-router-dom";
 
 interface ITitle {
     title: string,
@@ -37,7 +38,7 @@ export const Title = observer(({title, isCard, subredditName, isSearch, valueSea
         return (
             <div style={{position: 'relative'}}>
                 {
-                    isCard && <button onClick={backCards} className={styles.btn}><span className={styles.arrow}/></button>
+                    isCard && <Link to={'/posts'}><button onClick={backCards} className={styles.btn}><span className={styles.arrow}/></button></Link>
                 }
                 {
                     !isSearch &&
@@ -51,7 +52,7 @@ export const Title = observer(({title, isCard, subredditName, isSearch, valueSea
 
                 {
                     !isEnterSubreddit && isCard &&
-                    <button onClick={clickSubreddit} className={styles.subredditName}>{subredditName}</button>
+                    <Link to={'/posts'}><button onClick={clickSubreddit} className={styles.subredditName}>{subredditName}</button></Link>
                 }
 
                 {

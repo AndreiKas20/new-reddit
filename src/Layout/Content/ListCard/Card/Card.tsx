@@ -8,6 +8,7 @@ import changeTargetCardStore from "../../../../storeMobx/changeTargetCardStore";
 import {DateAndAuthor} from "./DateAndAuthor";
 import windowYPositionStore from "../../../../storeMobx/windowYPositionStore";
 import targetLoaderComments from "../../../../storeMobx/targetLoaderCommentsStore";
+import {Link} from "react-router-dom";
 
 interface ICard {
     dataPost: postData
@@ -29,25 +30,27 @@ export function Card({dataPost}: ICard) {
     }, [dataPost])
     return (
         <li onClick={changeData} className={styles.card}>
-            {
-                isImg &&
-                <img className={styles.img} alt={'картинка карточки'} src={dataPost.thumbnail}/>
-            }
-            <div className={styles.descrBlock}>
-                <p className={styles.text}>
-                    {
-                        !isBigText &&
-                        dataPost.title
-                    }
-                    {
-                        isBigText &&
-                        `${dataPost.title.slice(0, 70)}...`
-                    }
-                </p>
-                <DateAndAuthor date={date} author={dataPost.author}/>
-            </div>
-            <div style={{width: '100%', height: '60px'}}/>
-            <CardBtnBlock idCard={dataPost.name} countComments={dataPost.num_comments} countLike={dataPost.score}/>
+           <Link to={`/card?${dataPost.id}`}>
+               {
+                   isImg &&
+                   <img className={styles.img} alt={'картинка карточки'} src={dataPost.thumbnail}/>
+               }
+               <div className={styles.descrBlock}>
+                   <p className={styles.text}>
+                       {
+                           !isBigText &&
+                           dataPost.title
+                       }
+                       {
+                           isBigText &&
+                           `${dataPost.title.slice(0, 70)}...`
+                       }
+                   </p>
+                   <DateAndAuthor date={date} author={dataPost.author}/>
+               </div>
+               <div style={{width: '100%', height: '60px'}}/>
+               <CardBtnBlock idCard={dataPost.name} countComments={dataPost.num_comments} countLike={dataPost.score}/>
+           </Link>
         </li>
     );
 }

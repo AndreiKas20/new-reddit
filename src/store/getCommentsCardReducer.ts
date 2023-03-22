@@ -24,7 +24,7 @@ export const clearCommentsDataAction = () => ({type: CLEAR_COMMENTS})
 
 export const asyncGetComments = (token: string, postId: string, sort: string, limit:number) => {
     return (dispatch: any) => {
-        if (token === 'undefined' || token === '') return
+        if (token === 'undefined' || token === '' || !token) return
         axios.get(`https://oauth.reddit.com/comments/${postId}`, {
             headers: {Authorization: `bearer ${token}`},
             params: {

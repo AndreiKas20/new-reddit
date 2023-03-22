@@ -6,6 +6,7 @@ import {clearArrAction, clearKeyAction, getArrPosts} from "../../../store/getArr
 import targetCategoriesStore from "../../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 import windowYPositionStore from "../../../storeMobx/windowYPositionStore";
+import {Link} from "react-router-dom";
 
 export const NavMenu = observer(() => {
         const dispatch: any = useDispatch()
@@ -49,20 +50,20 @@ export const NavMenu = observer(() => {
             <nav className={styles.navBlock}>
                 <ul className={styles.list}>
                     <li className={styles.itemBtn}>
-                        <ButtonHeader active={categoriesLoad === 'hot'} onClick={hotPostsClick} text={'ГОРЯЧИЕ'}/>
+                        <Link to={'/posts?hot'}><ButtonHeader active={categoriesLoad === 'hot'} onClick={hotPostsClick} text={'ГОРЯЧИЕ'}/></Link>
                     </li>
                     <li className={styles.itemBtn}>
-                        <ButtonHeader active={categoriesLoad === 'top'} onClick={topPostsClick} text={'ПОПУЛЯРНЫЕ'}/>
+                        <Link to={'/posts?top'}><ButtonHeader active={categoriesLoad === 'top'} onClick={topPostsClick} text={'ПОПУЛЯРНЫЕ'}/></Link>
                     </li>
                     <li className={styles.itemBtn}>
-                        <ButtonHeader active={categoriesLoad === 'controversial'} onClick={contrPostsClick}
-                                      text={'НАШУМЕВШИЕ'}/>
+                        <Link to={'/posts?controversial'}><ButtonHeader active={categoriesLoad === 'controversial'} onClick={contrPostsClick}
+                                                                        text={'НАШУМЕВШИЕ'}/></Link>
                     </li>
                     <li className={styles.itemBtn}>
-                        <ButtonHeader active={categoriesLoad === 'rising'} onClick={risingPostsClick} text={'РАСТУЩИЕ'}/>
+                        <Link to={'/posts?rising'}><ButtonHeader active={categoriesLoad === 'rising'} onClick={risingPostsClick} text={'РАСТУЩИЕ'}/></Link>
                     </li>
                     <li className={styles.itemBtn}>
-                        <ButtonHeader active={categoriesLoad === 'new'} onClick={newPostsClick} text={'НОВЫЕ'}/>
+                        <Link to={'/posts?new'}><ButtonHeader active={categoriesLoad === 'new'} onClick={newPostsClick} text={'НОВЫЕ'}/></Link>
                     </li>
                 </ul>
             </nav>

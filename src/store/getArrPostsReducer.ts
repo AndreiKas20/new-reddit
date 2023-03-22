@@ -27,7 +27,7 @@ export const clearKeyAction = (payload: string) => ({type: CLEAR_KEY, payload})
 
 export const getArrPosts = (token: string, link: string, typeReddit: string, nextAfter?: string) => {
     return (dispatch: any) => {
-        if (token === 'undefined' || token === '') return
+        if (token === 'undefined' || token === '' || !token) return
         axios.get(`https://oauth.reddit.com/${typeReddit}${link}`, {
             headers: {Authorization: `bearer ${token}`},
             params: {

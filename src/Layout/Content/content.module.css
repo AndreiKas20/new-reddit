@@ -2,3 +2,31 @@
     padding: 115px 0 0 256px;
     background-color: var(--greyLightF8);
 }
+
+.authText {
+    position: absolute;
+    padding: 10px;
+    font-size: 30px;
+    left: 30%;
+    animation: authText ease-in-out 3s infinite;
+    color: var(--grey85);
+    border-radius: 10px;
+}
+@keyframes authText {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.img {
+    position: absolute;
+    top: 150px;
+    left: 140px;
+}

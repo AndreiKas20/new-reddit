@@ -23,7 +23,7 @@ export const clearKeySearchAction = () => ({type: CLEAR_KEY_SEARCH})
 
 export const asyncGetSearchAction = (token: string, search: string, after?:string) => {
     return (dispatch: any) => {
-        if (token === 'undefined' || token === '') return
+        if (token === 'undefined' || token === '' || !token) return
         axios.get('https://oauth.reddit.com/subreddits/search', {
             headers: {Authorization: `bearer ${token}`, },
             params: {

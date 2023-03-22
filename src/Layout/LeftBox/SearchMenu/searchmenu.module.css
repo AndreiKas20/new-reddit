@@ -24,7 +24,25 @@
 }
 
 .btn {
-    position: absolute;
+    padding: 7px 17px 7px 37px;
+    position: relative;
     top: 12px;
-    right: 5px;
+    /*right: 5px;*/
+    left: 15px;
+    border: 2px solid var(--grey85);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.iconPos {
+    position: absolute;
+    left: 5px;
+}
+
+.btnText {
+    position: relative;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--grey85);
 }

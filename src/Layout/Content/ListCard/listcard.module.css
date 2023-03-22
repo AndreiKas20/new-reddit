@@ -1,4 +1,5 @@
 .list {
+    position: relative;
     padding: 110px 140px 0 ;
     display: flex;
     flex-wrap: wrap;
@@ -6,21 +7,3 @@
     align-items: inherit;
 }
 
-.messageEnter {
-    padding: 10px;
-    font-size: 30px;
-    animation: enterMessage ease-in-out 3s infinite;
-    color: var(--grey85);
-    border-radius: 10px;
-}
-@keyframes enterMessage {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
