@@ -14,7 +14,7 @@ export const useGetToken = () => {
                 'https://www.reddit.com/api/v1/access_token',
                 `grant_type=authorization_code&code=${entryPoint}&redirect_uri=${location}`,
                 {
-                    auth: {username: 'gsPrKrOtfMuSQTh4N26WjQ', password: 'StLIloRG0QPN12ld1CbNJ5VD1ystTQ'},
+                    auth: {username: 'H9n1t1eqP6naYNRak5gd3w', password: 'ivPDAqCyAVEAR0IlhewMMChNOCON5w'},
                     headers: {'Content-type': 'application/x-www-form-urlencoded'}
                 }
             ).then(({data}) => {
