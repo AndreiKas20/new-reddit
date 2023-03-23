@@ -47,7 +47,6 @@ export const SearchBlock = observer(() => {
         } else {
             setIsBtn(true)
         }
-        console.log('search', getSearch, sel)
     },[getSearch])
   return (
         <section className={styles.search}>

@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {clearSearchAction} from "../../../../store/getSearchArrReducer";
 import {clearArrAction} from "../../../../store/getArrPostsReducer";
 import listRedditStore from "../../../../storeMobx/listRedditStore";
+import {Link} from "react-router-dom";
 
 interface IItem {
     dataItem: search
@@ -22,25 +23,24 @@ export function SearchItem({dataItem}: IItem) {
         listRedditStore.changeType(`r/${dataItem.display_name}/`)
     }
     return (
-        <li onClick={enterSubreddit} className={styles.item}>
-
-            {
-                dataItem.icon_img !== '' && <img className={styles.img} height={'50px'} alt={'лого подреддита'} src={dataItem.icon_img}/>
-            }
-            {
-                dataItem.icon_img === '' && dataItem.header_img !== null &&
-                <img className={styles.img}  height={'50px'} alt={'лого подреддита'} src={dataItem.header_img}/>
-            }
-            <span className={styles.titleSubreddit}>{dataItem.title.length > 110? dataItem.title.slice(0, 110): dataItem.title}</span>
-            <h4 className={styles.nameSubreddit}>{dataItem.display_name}</h4>
-            <div className={styles.infoBlock}>
+            <Link onClick={enterSubreddit} className={styles.item} to={'/posts'}>
+                {
+                    dataItem.icon_img !== '' && <img className={styles.img} height={'50px'} alt={'лого подреддита'} src={dataItem.icon_img}/>
+                }
+                {
+                    dataItem.icon_img === '' && dataItem.header_img !== null &&
+                    <img className={styles.img}  height={'50px'} alt={'лого подреддита'} src={dataItem.header_img}/>
+                }
+                <span className={styles.titleSubreddit}>{dataItem.title.length > 110? dataItem.title.slice(0, 110): dataItem.title}</span>
+                <h4 className={styles.nameSubreddit}>{dataItem.display_name}</h4>
+                <div className={styles.infoBlock}>
                 <span className={styles.dateCreate}>
                     <span className={styles.dateCreateText}>Создан:</span> {date.getMonth() + 1}.{date.getFullYear()}
                 </span>
-                <span style={dataItem.subscribers > 1000000 ? {color: '#00BCD4'}: {color: 'var(--orange)'} } className={styles.subscribers}>
+                    <span style={dataItem.subscribers > 1000000 ? {color: '#00BCD4'}: {color: 'var(--orange)'} } className={styles.subscribers}>
                    <span className={styles.subscrText}>Подписчиков:</span> {subscribeCount}
                 </span>
-            </div>
-        </li>
+                </div>
+            </Link>
     );
 }

@@ -34,8 +34,7 @@ export const asyncGetTokenAction = () => {
                     headers: {'Content-type': 'application/x-www-form-urlencoded'}
                 }
             ).then(({data}) => {
-                console.log('load token')
-                dispatch(getTokenAction(data['access_token']))
+                 dispatch(getTokenAction(data['access_token']))
                 localStorage.token = data['access_token']
             }).catch(console.log)
     }

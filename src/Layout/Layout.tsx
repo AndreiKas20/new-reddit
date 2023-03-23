@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import styles from './layout.module.css';
 import {LeftBox} from "./LeftBox";
 import {Header} from "./Header";
@@ -11,7 +11,6 @@ import {Route, Routes} from "react-router";
 export const Layout = observer(() => {
     const dispatch: any = useDispatch()
     useLayoutEffect(() => {
-        console.log(localStorage.token)
         if (localStorage.token === '' || localStorage.token === 'undefined' || !localStorage.token) {
             dispatch(asyncGetTokenAction())
         } else {
@@ -22,9 +21,9 @@ export const Layout = observer(() => {
         <main className={styles.layout}>
             <Header/>
             <LeftBox/>
-           <Routes>
-               <Route path={'*'} element={ <Content/>}/>
-           </Routes>
+            <Routes>
+                <Route path={'*'} element={<Content/>}/>
+            </Routes>
         </main>
     );
 })

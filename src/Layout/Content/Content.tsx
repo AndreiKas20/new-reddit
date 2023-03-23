@@ -40,7 +40,14 @@ export const Content = observer(() => {
 
             <Routes>
                 <Route path={'/auth'} element={<Navigate to={'/posts'}/>}/>
-                <Route path={'/'} element={<Navigate to={'/not-auth'}/>}/>
+                {
+                    localStorage.token && localStorage.token !== '' && localStorage.token !== 'undefined' &&
+                    <Route path={'/'} element={<Navigate to={'/posts'}/>}/>
+                }
+                {
+                    (!localStorage.token || localStorage.token === '' || localStorage.token === 'undefined') &&
+                    <Route path={'/'} element={<Navigate to={'/not-auth'}/>}/>
+                }
                 {
                     // isCard && !isSearchOpen && !isAuth &&
                     <Route path={'/card'} element={<EntryCard cardData={dataCard}/>} />

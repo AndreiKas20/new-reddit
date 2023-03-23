@@ -16,7 +16,6 @@ export const useGetPosts = (token: string) => {
             .then((resp) => {
                 const data = resp.data;
                 setPostData(data)
-                console.log('scope',data)
             })
             .catch((error) => {
                 console.log(error)

@@ -34,7 +34,6 @@ export const asyncGetSearchAction = (token: string, search: string, after?:strin
         })
             .then((resp) => {
                 const data = resp.data;
-                console.log('data', data)
                 dispatch(getSearchAction(data))
             })
             .catch((error) => {

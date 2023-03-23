@@ -10,7 +10,6 @@ export function LeftBox() {
     const token = useSelector<any, string>(state => state.getTokenReducer.token)
     const dispatch: any = useDispatch()
     useEffect(() => {
-        console.log('token', token)
         dispatch(getDataUser(token))
     }, [token, dispatch])
     return (
