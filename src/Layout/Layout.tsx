@@ -7,8 +7,10 @@ import {observer} from "mobx-react-lite";
 import {useDispatch} from "react-redux";
 import {asyncGetTokenAction, getTokenAction} from "../store/getTokenReducer";
 import {Route, Routes} from "react-router";
+import {useGetPosts} from "../hooks/useGetPosts";
 
 export const Layout = observer(() => {
+    const a = useGetPosts(localStorage.token)
     const dispatch: any = useDispatch()
     useLayoutEffect(() => {
         if (localStorage.token === '' || localStorage.token === 'undefined' || !localStorage.token) {

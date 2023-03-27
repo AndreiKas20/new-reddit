@@ -33,7 +33,8 @@ export function IconRedditAndAccount() {
                 <img alt={'Аватар автора'} style={data?.verified ? {width: '40px'} : {width: '60px'}}
                      src={data?.icon_img.split('?')[0]} className={styles.img}/>
                 <a className={styles.name}
-                   href="https://www.reddit.com/api/v1/authorize?client_id=H9n1t1eqP6naYNRak5gd3w&response_type=code&state=random_string&redirect_uri=https://new-reddit-theta.vercel.app/auth&duration=permanent&scope=read submit identity">
+                   // href="https://www.reddit.com/api/v1/authorize?client_id=H9n1t1eqP6naYNRak5gd3w&response_type=code&state=random_string&redirect_uri=https://new-reddit-theta.vercel.app/auth&duration=permanent&scope=read submit identity">
+                    href="https://www.reddit.com/api/v1/authorize?client_id=gsPrKrOtfMuSQTh4N26WjQ&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity">
                     {data?.name}
                 </a>
                 {
