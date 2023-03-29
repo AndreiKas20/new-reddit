@@ -19,12 +19,6 @@ export function Setting() {
                     </div>
                     <ButtonLeftMenu text={'Помощь'}/>
                 </li>
-                <li className={styles.item}>
-                    <div className={styles.positionIcon}>
-                        <Icon nameIcon={"Setting"} width={'24px'} height={'24px'} isActive={false}/>
-                    </div>
-                    <ButtonLeftMenu text={'Настройки'}/>
-                </li>
             </ul>
         </nav>
     );
