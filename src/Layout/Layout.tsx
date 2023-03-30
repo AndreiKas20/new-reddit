@@ -1,8 +1,8 @@
 import React, {useLayoutEffect} from 'react';
 import styles from './layout.module.css';
-import {LeftBox} from "./LeftBox";
-import {Header} from "./Header";
-import {Content} from "./Content";
+import {LeftBox} from "../components/LeftBox";
+import {Header} from "../components/Header";
+import {Content} from "../components/Content";
 import {observer} from "mobx-react-lite";
 import {useDispatch} from "react-redux";
 import {asyncGetTokenAction, getTokenAction} from "../store/getTokenReducer";

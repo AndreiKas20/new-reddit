@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import './assets/css/normalize.css'
-import './assets/css/main.global.css'
-import './assets/css/colors.global.css'
+import './styles/normalize.css'
+import './styles/main.global.css'
+import './styles/colors.global.css'
 import {Layout} from "./Layout";
 import {Provider} from "react-redux";
 import {store} from "./store/store";

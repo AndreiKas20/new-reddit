@@ -27,7 +27,7 @@ export const defaultUser : userDataType = {
     has_verified_email: false,
     has_visited_new_profile: false,
     hide_from_robots: false,
-    icon_img: img,
+    icon_img: '',
     id: '',
     in_beta: false,
     in_redesign_beta: false,
