@@ -21,8 +21,8 @@ export function Card({dataPost}: ICard) {
     const changeData = useCallback(() => {
         windowYPositionStore.savePosition(window.scrollY)
         dataTargetCardStore.changePostData(dataPost)
-        changeTargetCardStore.changeTarget(true)
-        targetLoaderComments.change(true)
+        // changeTargetCardStore.changeTarget(true)
+        // targetLoaderComments.change(true)
     }, [dataPost])
     useEffect(() => {
         if (dataPost.thumbnail.length > 10) setIsImg(true)
@@ -30,7 +30,6 @@ export function Card({dataPost}: ICard) {
     }, [dataPost])
     return (
         <li onClick={changeData} className={styles.card}>
-           <Link to={`/card?${dataPost.id}`}>
                {
                    isImg &&
                    <img className={styles.img} alt={'картинка карточки'} src={dataPost.thumbnail}/>
@@ -50,7 +49,6 @@ export function Card({dataPost}: ICard) {
                </div>
                <div style={{width: '100%', height: '60px'}}/>
                <CardBtnBlock idCard={dataPost.name} countComments={dataPost.num_comments} countLike={dataPost.score}/>
-           </Link>
         </li>
     );
 }

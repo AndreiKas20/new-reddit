@@ -1,6 +1,7 @@
 import {Reducer} from "redux";
 import axios from "axios";
-import {posts} from "../../types/postsType";
+import {arrPosts, posts} from "../../types/postsType";
+import {useSelector} from "react-redux";
 
 export const arrCard = false
 const arr = {arr: []}

@@ -50,20 +50,20 @@ export const NavMenu = observer(() => {
             <nav className={styles.navBlock}>
                 <ul className={styles.list}>
                     <li className={styles.itemBtn}>
-                        <Link to={'/posts?hot'}><ButtonHeader active={categoriesLoad === 'hot'} onClick={hotPostsClick} text={'ГОРЯЧИЕ'}/></Link>
+                        <ButtonHeader active={categoriesLoad === 'hot'} onClick={hotPostsClick} text={'ГОРЯЧИЕ'}/>
                     </li>
                     <li className={styles.itemBtn}>
-                        <Link to={'/posts?top'}><ButtonHeader active={categoriesLoad === 'top'} onClick={topPostsClick} text={'ПОПУЛЯРНЫЕ'}/></Link>
+                        <ButtonHeader active={categoriesLoad === 'top'} onClick={topPostsClick} text={'ПОПУЛЯРНЫЕ'}/>
                     </li>
                     <li className={styles.itemBtn}>
-                        <Link to={'/posts?controversial'}><ButtonHeader active={categoriesLoad === 'controversial'} onClick={contrPostsClick}
-                                                                        text={'НАШУМЕВШИЕ'}/></Link>
+                        <ButtonHeader active={categoriesLoad === 'controversial'} onClick={contrPostsClick}
+                                                                        text={'НАШУМЕВШИЕ'}/>
                     </li>
                     <li className={styles.itemBtn}>
-                        <Link to={'/posts?rising'}><ButtonHeader active={categoriesLoad === 'rising'} onClick={risingPostsClick} text={'РАСТУЩИЕ'}/></Link>
+                        <ButtonHeader active={categoriesLoad === 'rising'} onClick={risingPostsClick} text={'РАСТУЩИЕ'}/>
                     </li>
                     <li className={styles.itemBtn}>
-                        <Link to={'/posts?new'}><ButtonHeader active={categoriesLoad === 'new'} onClick={newPostsClick} text={'НОВЫЕ'}/></Link>
+                        <ButtonHeader active={categoriesLoad === 'new'} onClick={newPostsClick} text={'НОВЫЕ'}/>
                     </li>
                 </ul>
             </nav>

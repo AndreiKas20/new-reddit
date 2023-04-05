@@ -3,12 +3,13 @@ import styles from './listcard.module.css';
 import {Card} from "./Card";
 import {arrPosts} from "../../../types/postsType";
 import {useDispatch, useSelector} from "react-redux";
-import {getArrPosts} from "../../store/getArrPostsReducer";
 import targetCategoriesStore from "../../storeMobx/targetCategoriesStore";
 import {observer} from "mobx-react-lite";
 import windowYPositionStore from "../../storeMobx/windowYPositionStore";
 import listRedditStore from "../../storeMobx/listRedditStore";
-import {BtnLoader} from "../../UI/BtnLoader";
+import {getArrPosts} from "@/store/getArrPostsReducer";
+import {BtnLoader} from "@/UI/BtnLoader";
+import {asyncGetTokenAction} from "@/store/getTokenReducer";
 
 interface IListCard {
     startArrPosts: arrPosts
@@ -51,6 +52,15 @@ export const ListCard = observer(({startArrPosts}: IListCard) => {
             setIsLoader(false)
         }
     }, [posts])
+    useEffect(() => {
+        dispatch(asyncGetTokenAction())
+        console.log('in use')
+        if (localStorage.token === '' || localStorage.token === 'undefined' || !localStorage.token) {
+            dispatch(asyncGetTokenAction())
+        } else {
+            dispatch(asyncGetTokenAction())
+        }
+    }, [])
     // useEffect(() => {
     //     const current = bottomOfList.current
     //     const observer = new IntersectionObserver((entries) => {
